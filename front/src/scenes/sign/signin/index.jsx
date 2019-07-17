@@ -1,66 +1,44 @@
 import React, { useState } from "react"
-import TextField from '@material-ui/core/TextField'
-import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import Input from '../components/Input'
 
+export default function SignUn() {
 
+    const [form, setValues] = useState({
+        login: "",
+        password: "",
+        disabled: true,
+    })
 
-export default function SignIn(){
-
-    const [input, setInput] = useState("")
-    const [password, setPassword] = useState("")
     const [errorLog, setErrorLog] = useState(false)
     const [errorPwd, setErrorPwd] = useState(false)
-    const [disabled, setDissabled] = useState(true)
 
-    function handleSubmit(e){
-        // SEND POST REQUEST TO BACK WITH LOGIN PASSWORD
+    function handleSubmit(e) {
         e.preventDefault();
-        // input.length === 0 ? setErrorLog(true) : setErrorLog(false)
-        // password.length === 0 ? setErrorPwd(true) : setErrorPwd(false)
-        setErrorLog(true)
-        setErrorPwd(true)
+
+        fetch('192.168.99.100:5000/api/users')
+            .then(response => console.log(response))
+        // setErrorLog(true)
+        // setErrorPwd(true)
     }
-    return(
+    const isEnabled = form.login.length > 0 && form.password.length > 0;
+    return (
         <Container maxWidth="sm">
-        <form onSubmit={handleSubmit}>
-                <TextField
-                    required
-                    id="outlined-name"
-                    label="Login"
-                    // className={classes.textField}
-                    value={input}
-                    onChange={(e) => setInput(e.target.value) }
-                    margin="normal"
-                    variant="outlined"
-                    error={errorLog}
-                />
+            <form onSubmit={handleSubmit}>
+                <Input type="login" error={false} value={form} setValues={setValues} />
                 <br />
-                <TextField
-                    required
-                    id="outlined-password-input"
-                    label="Password"
-                    // className={classes.textField}
-                    value={password}
-                    onChange={(e) => setPassword( e.target.value )}
-                    margin="normal"
+                <Input type="password" error={false} value={form} setValues={setValues} />
+                <br />
+                <Button
                     variant="outlined"
-                    type="password"
-                    error={errorPwd}
-                />
-            <br />
-            <Button 
-                variant="outlined" 
-                color="primary"
-                type="submit"
-                size="large" 
-                // className={classes.button}
-                disabled={disabled}
-                >
-                Connect
-            </Button>
-      </form>
-      </Container>
+                    color="primary"
+                    type="submit"
+                    size="large"
+                    disabled={!isEnabled}
+                    value="Connect"
+                >Connect</Button>
+            </form>
+        </Container>
     )
 }

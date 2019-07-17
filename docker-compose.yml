@@ -10,13 +10,23 @@ services:
       - NEO4J_AUTH=neo4j/julaurai
 
   backend:
-    build: .
+    build: 'backend/.'
     volumes:
       - ~/Project/stud_projects/in_progress/node_app/backend:/home/node
     ports:
-      - "3000:3000"
+      - "5000:5000"
     command: "npm install"
     command: "npm run dev"
+  
+  front:
+    build: 'front/.'
+    volumes:
+      - ~/Project/stud_projects/in_progress/node_app/front:/app
+    ports:
+      - "3000:3000"
+    command: "npm install"
+    command: "npm start"
 
 volumes:
   backend:
+  front:
