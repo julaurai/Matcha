@@ -8,14 +8,15 @@ export default function Input(props) {
     function updateField(e) {
         props.setValues({
             ...props.value,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            error: false
         })
     }
     // LOGIN, NOM , PRENOM , MAIL , PASSWORD1, PASSWORD2 
     var property = {};
     if (props.type === "password") {
         property = {
-            "id": "outlined-password-input",
+            "id": "standard-password-input",
             "type": "password",
             "label": "Password",
             "name": "password",
@@ -23,7 +24,7 @@ export default function Input(props) {
         }
     } else if (props.type === "login") {
         property = {
-            "id": "outlined-name",
+            "id": "standard-login",
             "label": "Login",
             "type": "text",
             "name": "login",
@@ -32,19 +33,19 @@ export default function Input(props) {
     }
     else if (props.type === "mail") {
         property = {
-            "id": "outlined-name",
+            "id": "standard-mail",
             "label": "Email",
             "type": "text",
             "name": "mail",
             "value": props['value'].mail
         }
-    } else if (props.type === "nom") {
+    } else if (props.type === "name") {
         property = {
-            "id": "outlined-name",
-            "label": "Nom",
+            "id": "standard-name",
+            "label": "Last name",
             "type": "text",
-            "name": "nom",
-            "value": props['value'].nom
+            "name": "name",
+            "value": props['value'].name
         }
     } else if (props.type === "password2") {
         property = {
@@ -53,6 +54,14 @@ export default function Input(props) {
             "label": "Password confirmation",
             "name": "password2",
             "value": props['value'].password2
+        }
+    } else if (props.type === "firstName") {
+        property = {
+            "id": "first_name-input",
+            "type": "text",
+            "label": "First Name",
+            "name": "firstName",
+            "value": props['value'].firstName
         }
     }
 

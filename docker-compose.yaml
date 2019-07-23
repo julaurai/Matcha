@@ -12,20 +12,22 @@ services:
   backend:
     build: 'backend/.'
     volumes:
-      - ~/Project/stud_projects/in_progress/node_app/backend:/home/node
+      - ./backend:/home/node
     ports:
       - "5000:5000"
     command: "npm install"
     command: "npm run dev"
-  
+
   front:
-    build: 'front/.'
+    build:  'front/.'
     volumes:
-      - ~/Project/stud_projects/in_progress/node_app/front:/app
+      - ./front:/app
     ports:
       - "3000:3000"
-    command: "npm install"
-    command: "npm start"
+    environment:
+      - CHOKIDAR_USEPOLLING=1
+    command:  "npm install"
+    command:  "npm start"
 
 volumes:
   backend:
