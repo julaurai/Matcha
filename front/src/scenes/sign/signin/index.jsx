@@ -21,11 +21,8 @@ export default function SignUn() {
         }
         if (regex.login.test(form.login) && regex.passwordMedium.test(form.password)) {
             console.log("sending request to DB");
-            // axios.get('https://jsonplaceholder.typicode.com/users')
-            //         .then(res => {
-            //             const persons = res.data;
-            //             console.log(persons)
-            //         })
+            localStorage.setItem('id_token', "bonjour");
+            console.log(localStorage.getItem('id_token'))
         } else {
             setValues({
                 ...form,

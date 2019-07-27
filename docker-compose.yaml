@@ -15,7 +15,6 @@ services:
       - ./backend:/home/node
     ports:
       - "5000:5000"
-    command: "npm install"
     command: "npm run dev"
 
   front:
@@ -26,7 +25,6 @@ services:
       - "3000:3000"
     environment:
       - CHOKIDAR_USEPOLLING=1
-    command:  "npm install"
     command:  "npm start"
 
 volumes:

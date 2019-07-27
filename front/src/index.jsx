@@ -14,8 +14,8 @@ const { Header, Footer, Sider, Content } = Layout;
 const routing = (
     <Router>
         <Layout>
-        <Header theme="light">
-            <Menu mode="horizontal" theme="light">
+        <Header theme="dark">
+            <Menu mode="horizontal" theme="dark">
                 <Menu.Item>
                     <NavLink exact to="/">Home</NavLink>
                 </Menu.Item>
